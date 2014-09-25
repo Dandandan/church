@@ -16,7 +16,7 @@ render { ready } = ready renderScore renderLevel
 @docs Boolean, true, false
 
 # Boolean functions
-@docs and, or, not, xor
+@docs and, or, not, xor, equals
 
 # Conversion
 @docs show, fromBool, toBool
@@ -58,6 +58,10 @@ or p q = p true q
 -}
 xor : Boolean (Boolean a) -> Boolean (Boolean a) -> Boolean a
 xor p q = p (q false true) (q true false)
+
+{-| `true` if the first argument equals the second  -}
+equals : a -> a -> Boolean b
+equals a b = fromBool (a == b)
 
 {-| Convert a `Boolean` into a string -}
 show : Boolean String -> String

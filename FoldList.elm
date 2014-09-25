@@ -1,7 +1,7 @@
 module FoldList where
 
 {-| List using Church encoding. 
-    A FoldList is a fold function.
+
 
 ```haskell
     toList (cons 1 (cons 2 empty)) == [1, 2]
@@ -10,8 +10,8 @@ module FoldList where
 # FoldList
 @docs FoldList, empty, cons
 
-# Pair functions
-@docs isEmpty
+# FoldList functions
+@docs isEmpty, length, map
 
 # Conversion
 @docs show, fromList, toList
@@ -45,7 +45,20 @@ fromList xs = foldr cons empty xs
 toList : FoldList a [a] -> [a]
 toList fold = fold (::) []
 
+{-| Length of a FoldList -}
+length : FoldList a Int -> Int
+length fold = fold (\_ y -> 1 + y) 0
+
+{-| Filter a FoldList using a predicate function -}
+filter : (a -> Boolean (FoldList a b)) -> FoldList a (FoldList a b) -> FoldList a b
+filter f fold = fold (\x y -> f x (x `cons` y) y) empty
+
+{-| Apply a function to every element -}
+map : (a -> b) -> FoldList a (FoldList b c) -> FoldList b c
+map f fold = fold (\x y ->  f x `cons` y) empty
+
 {-| Converts a `FoldList` into a `String` -}
 show : FoldList a [a] -> String
 show fold = String.show (toList fold)
+
 
