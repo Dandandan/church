@@ -18,50 +18,55 @@ render { ready } = ready renderScore renderLevel
 # Boolean functions
 @docs and, or, not, xor
 
-# Displaying
-@docs show
+# Conversion
+@docs show, fromBool, toBool
 
 -}
 
 {-| Boolean type -}
 type Boolean a = a -> a -> a
 
-{-| true value
-    Takes two values and returns the first
+{-| Takes two values and returns the first
 -}
 true : Boolean a
 true x y = x
 
-{-| true value
-    Takes two values and returns the second
+{-| Takes two values and returns the second
 -}
 false : Boolean a
 false x y = y
 
-{-| Negate a boolean value: (not true == false) and (not false == true)
+{-| Negate a boolean value: `(not true == false)` and `(not false == true)`
 
 -}
 not : Boolean a -> Boolean a
 not p = flip p
 
-{-| The `and` function. True if both inputs are true. This operator short-circuits if the first argument is false.
+{-| `true` if both inputs are `true`. This operator short-circuits if the first argument is `false`.
 -}
 and : Boolean (Boolean a) -> Boolean a -> Boolean a
 and p q = p q false
 
 
-{-| The or operator. True if one or both inputs are true. This operator short-circuits if the first argument is true.
+{-| `true` if one or both inputs are `true`. This operator short-circuits if the first argument is `true`.
 -}
 or : Boolean (Boolean a) -> Boolean a -> Boolean a
 or p q = p true q
 
-{-| The exclusive-or operator. True if exactly one input is true.
+{-| The exclusive-or function. True if exactly one input is true.
 
 -}
 xor : Boolean (Boolean a) -> Boolean (Boolean a) -> Boolean a
 xor p q = p (q false true) (q true false)
 
-
-{-| Convert a boolean into a string -}
+{-| Convert a `Boolean` into a string -}
 show : Boolean String -> String
-show f = f "true" "false"
+show p = p "true" "false"
+
+{-| Convert a `Boolean` into a Bool -}
+toBool : Boolean Bool -> Bool
+toBool p = p True False
+
+{-| Convert a `Bool` into a `Boolean` -}
+fromBool : Bool -> Boolean a
+fromBool b = if b then true else false

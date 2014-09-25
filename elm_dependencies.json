@@ -2,8 +2,8 @@
     "summary": "Control structures using church encoding",
     "repository": "https://github.com/Dandandan/church.git",
     "dependencies": {},
-    "exposed-modules": ["Boolean"],
-    "version": "0.1.0",
+    "exposed-modules": ["Boolean", "Pair", "FoldList"],
+    "version": "0.1.2",
     "elm-version": "0.13",
     "license": "BSD3",
     "description": ""
