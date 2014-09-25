@@ -11,7 +11,7 @@ module FoldList where
 @docs FoldList, empty, cons
 
 # FoldList functions
-@docs isEmpty, length, map
+@docs isEmpty, length, map, append
 
 # Conversion
 @docs show, fromList, toList
@@ -56,6 +56,10 @@ filter f fold = fold (\x y -> f x (x `cons` y) y) empty
 {-| Apply a function to every element -}
 map : (a -> b) -> FoldList a (FoldList b c) -> FoldList b c
 map f fold = fold (\x y ->  f x `cons` y) empty
+
+{-| Append two FoldLists -}
+append : FoldList a b -> FoldList a b -> FoldList a b
+append xs ys k z = xs k (ys k z)
 
 {-| Converts a `FoldList` into a `String` -}
 show : FoldList a [a] -> String

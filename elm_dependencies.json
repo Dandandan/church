@@ -3,7 +3,7 @@
     "repository": "https://github.com/Dandandan/church.git",
     "dependencies": {},
     "exposed-modules": ["Boolean", "Pair", "FoldList"],
-    "version": "0.1.3",
+    "version": "0.1.5",
     "elm-version": "0.13",
     "license": "BSD3",
     "description": ""
