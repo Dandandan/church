@@ -1,6 +1,4 @@
 module Pair where
-import String
-
 {-| Pairs using Church encoding.
 
 ```haskell
@@ -17,6 +15,7 @@ import String
 # Conversion
 @docs show, fromTuple, toTuple
 -}
+import String
 
 {-| `Pair` type -}
 type Pair a b c = (a -> b -> c) -> c

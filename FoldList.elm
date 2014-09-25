@@ -1,5 +1,5 @@
 module FoldList where
-import String
+
 {-| List using Church encoding. 
     A FoldList is a fold function.
 
@@ -19,6 +19,7 @@ import String
 
 -}
 
+import String
 import Boolean (..)
 
 {-| `FoldList` type -}
