@@ -1,15 +1,29 @@
+module Boolean where
+
 {-| Booleans using Church encoding. Useful for creating control structures.
     
-    ```
-      type Level a = { ready : Boolean a}
-      
-      start = { ready = false }
-      
-      render { ready } = ready renderScore renderLevel
-      
-    ```
+```haskell
+type Level a = { ready : Boolean a}
+
+start = { ready = false }
+
+render { ready } = ready renderScore renderLevel
+  
+```
+
+
+# Boolean values
+@docs Boolean, true, false
+
+# Boolean functions
+@docs and, or, not, xor
+
+# Displaying
+@docs show
+
 -}
 
+{-| Boolean type -}
 type Boolean a = a -> a -> a
 
 {-| true value
